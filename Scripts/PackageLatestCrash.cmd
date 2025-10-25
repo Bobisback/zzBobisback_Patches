@@ -72,11 +72,11 @@ set "ZIP_TEMP=%TEMP%\%ZIP_NAME%"
 
 if exist "%ZIP_TEMP%" del /f /q "%ZIP_TEMP%" >nul 2>&1
 
-REM Zip the WHOLE crash folder (folder itself inside the zip)
+REM Zip only the CONTENTS (no parent folder at the root of the zip)
 set "SRCFOLDER=%CURRENT_CRASH%"
 set "DSTZIP=%ZIP_TEMP%"
 powershell -NoProfile -Command ^
-  "$src=$env:SRCFOLDER; $dst=$env:DSTZIP; if (Test-Path -LiteralPath $dst){Remove-Item -LiteralPath $dst -Force}; Compress-Archive -LiteralPath $src -DestinationPath $dst -Force"
+  "$src=$env:SRCFOLDER; $dst=$env:DSTZIP; if (Test-Path -LiteralPath $dst){Remove-Item -LiteralPath $dst -Force}; Get-ChildItem -LiteralPath $src -Force | Compress-Archive -DestinationPath $dst -Force"
 
 if not exist "%ZIP_TEMP%" (
   echo [ERROR] Failed to create zip: "%ZIP_TEMP%"
