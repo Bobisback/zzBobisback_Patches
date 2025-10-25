@@ -3,66 +3,61 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 REM ============================================================
 REM ==================  EASY-TO-EDIT SETTINGS  =================
-REM Location of KSP crash folders (script works no matter where it lives)
-set "kspCrashFolder=C:\Users\Bobisback\AppData\Local\Temp\Squad\Kerbal Space Program\Crashes"
-
-REM Files to collect
-set "moduleManagerLogUrl=F:\SteamLibrary\steamapps\common\Kerbal Space Program\Logs\ModuleManager\ModuleManager.log"
-set "moduleManagerCache=F:\SteamLibrary\steamapps\common\Kerbal Space Program\GameData\ModuleManager.ConfigCache"
-set "KSPLog=F:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP.log"
-
-REM Where to drop the final zip
-REM set "downloads=C:\Users\Bobisback\Downloads"
-REM (Optional) user-agnostic:
-set "downloads=%USERPROFILE%\Downloads"
+REM Root KSP folder (ONLY THING TO EDIT)
+set "KSP_ROOT=F:\SteamLibrary\steamapps\common\Kerbal Space Program"
 
 REM COPY vs MOVE the three files into the crash folder
-set "FILE_ACTION=COPY"
-REM Set to MOVE if you want the originals removed.
+set "FILE_ACTION=COPY"   REM change to MOVE if you want originals removed
 REM ============================================================
 
+REM ---- Derive all other paths from KSP_ROOT and user profile ----
+for %%A in ("%KSP_ROOT%") do set "KSP_NAME=%%~nxA"
+set "KSP_LOG=%KSP_ROOT%\KSP.log"
+set "MM_LOG=%KSP_ROOT%\Logs\ModuleManager\ModuleManager.log"
+set "MM_CACHE=%KSP_ROOT%\GameData\ModuleManager.ConfigCache"
+set "DOWNLOADS=%USERPROFILE%\Downloads"
+set "KSP_CRASH_ROOT=%LOCALAPPDATA%\Temp\Squad\%KSP_NAME%\Crashes"
+
 REM Validate crash root exists
-if not exist "%kspCrashFolder%\" (
-  echo [ERROR] Crash folder root not found: "%kspCrashFolder%"
-  echo        Check the path above and try again.
+if not exist "%KSP_CRASH_ROOT%\" (
+  echo [ERROR] Crash folder root not found: "%KSP_CRASH_ROOT%"
+  echo        Check KSP_ROOT or run the game to generate a crash first.
   goto :end
 )
 
-REM Find the most recently CREATED crash subfolder -> currentCrash
-REM /ad = directories only, /b = bare names, /o-d = newest first, /t:c = sort by creation time
-set "currentCrash="
-for /f "usebackq delims=" %%d in (`dir "%kspCrashFolder%" /ad /b /o-d /t:c`) do (
-  set "currentCrash=%kspCrashFolder%\%%d"
+REM Find the most recently CREATED crash subfolder -> CURRENT_CRASH
+set "CURRENT_CRASH="
+for /f "usebackq delims=" %%d in (`dir "%KSP_CRASH_ROOT%" /ad /b /o-d /t:c`) do (
+  set "CURRENT_CRASH=%KSP_CRASH_ROOT%\%%d"
   goto :gotCrash
 )
 :gotCrash
 
-if not defined currentCrash (
-  echo [ERROR] No crash subfolders found under:
-  echo        "%kspCrashFolder%"
+if not defined CURRENT_CRASH (
+  echo [ERROR] No crash subfolders found under: "%KSP_CRASH_ROOT%"
   goto :end
 )
 
 echo [INFO] Current crash folder:
-echo        "%currentCrash%"
+echo        "%CURRENT_CRASH%"
 echo.
 
 REM Ensure target exists (should already)
-if not exist "%currentCrash%\" (
+if not exist "%CURRENT_CRASH%\" (
   echo [ERROR] Resolved crash folder doesn't exist:
-  echo        "%currentCrash%"
+  echo        "%CURRENT_CRASH%"
   goto :end
 )
 
 REM COPY or MOVE the three files into the crash folder
-for %%X in ("%moduleManagerLogUrl%" "%moduleManagerCache%" "%KSPLog%") do (
+for %%X in ("%MM_LOG%" "%MM_CACHE%" "%KSP_LOG%") do (
   if exist "%%~X" (
     if /I "%FILE_ACTION%"=="COPY" (
       echo [COPY] %%~X
-      copy /Y "%%~X" "%currentCrash%\" >nul
+      copy /Y "%%~X" "%CURRENT_CRASH%\" >nul
     ) else (
       echo [MOVE] %%~X
-      move /Y "%%~X" "%currentCrash%\" >nul
+      move /Y "%%~X" "%CURRENT_CRASH%\" >nul
     )
   ) else (
     echo [WARN] Not found: %%~X
@@ -71,31 +66,32 @@ for %%X in ("%moduleManagerLogUrl%" "%moduleManagerCache%" "%KSPLog%") do (
 
 echo.
 
-REM Build zip name from the crash folder name and create the zip in %TEMP%
-for %%A in ("%currentCrash%") do set "zipName=%%~nA.zip"
-set "zipPath=%TEMP%\%zipName%"
+REM Build zip name from the crash folder name and create it in %TEMP%
+for %%A in ("%CURRENT_CRASH%") do set "ZIP_NAME=%%~nA.zip"
+set "ZIP_TEMP=%TEMP%\%ZIP_NAME%"
 
-REM Clean any prior temp zip
-if exist "%zipPath%" del /f /q "%zipPath%" >nul 2>&1
+if exist "%ZIP_TEMP%" del /f /q "%ZIP_TEMP%" >nul 2>&1
 
 REM Zip the WHOLE crash folder (folder itself inside the zip)
+set "SRCFOLDER=%CURRENT_CRASH%"
+set "DSTZIP=%ZIP_TEMP%"
 powershell -NoProfile -Command ^
-  "$p = '%currentCrash%'; $d = '%zipPath%'; if (Test-Path $d) {Remove-Item $d -Force}; Get-ChildItem -LiteralPath $p | Compress-Archive -DestinationPath $d -Force"
+  "$src=$env:SRCFOLDER; $dst=$env:DSTZIP; if (Test-Path -LiteralPath $dst){Remove-Item -LiteralPath $dst -Force}; Compress-Archive -LiteralPath $src -DestinationPath $dst -Force"
 
-if not exist "%zipPath%" (
-  echo [ERROR] Failed to create zip: "%zipPath%"
+if not exist "%ZIP_TEMP%" (
+  echo [ERROR] Failed to create zip: "%ZIP_TEMP%"
   goto :end
 )
 
 REM Ensure Downloads exists, then move the zip there (overwrite if exists)
-if not exist "%downloads%" mkdir "%downloads%" >nul 2>&1
-move /Y "%zipPath%" "%downloads%\%zipName%" >nul
+if not exist "%DOWNLOADS%" mkdir "%DOWNLOADS%" >nul 2>&1
+move /Y "%ZIP_TEMP%" "%DOWNLOADS%\%ZIP_NAME%" >nul
 
-if exist "%downloads%\%zipName%" (
+if exist "%DOWNLOADS%\%ZIP_NAME%" (
   echo [DONE] Packaged crash to:
-  echo        "%downloads%\%zipName%"
+  echo        "%DOWNLOADS%\%ZIP_NAME%"
 ) else (
-  echo [ERROR] Could not move the zip to "%downloads%".
+  echo [ERROR] Could not move the zip to "%DOWNLOADS%".
 )
 
 :end
