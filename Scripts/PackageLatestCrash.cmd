@@ -8,6 +8,8 @@ set "moduleManagerLogUrl=F:\SteamLibrary\steamapps\common\Kerbal Space Program\L
 set "moduleManagerCache=F:\SteamLibrary\steamapps\common\Kerbal Space Program\GameData\ModuleManager.ConfigCache"
 set "KSPLog=F:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP.log"
 set "downloads=C:\Users\Bobisback\Downloads"
+REM Move files into the crash folder? Set to MOVE or COPY
+set "FILE_ACTION=COPY"
 REM ============================================================
 
 REM Base directory = the folder where this script lives
@@ -33,15 +35,21 @@ echo.
 REM Make sure the folder exists (it should)
 if not exist "%currentCrash%" mkdir "%currentCrash%"
 
-REM Move the three files into currentCrash (warn if any are missing)
+REM Move/Copy the three files into currentCrash (warn if any are missing)
 for %%X in ("%moduleManagerLogUrl%" "%moduleManagerCache%" "%KSPLog%") do (
   if exist "%%~X" (
-    echo [MOVE] %%~X
-    move /Y "%%~X" "%currentCrash%" >nul
+    if /I "%FILE_ACTION%"=="COPY" (
+      echo [COPY] %%~X
+      copy /Y "%%~X" "%currentCrash%\" >nul
+    ) else (
+      echo [MOVE] %%~X
+      move /Y "%%~X" "%currentCrash%\" >nul
+    )
   ) else (
     echo [WARN] Not found: %%~X
   )
 )
+
 
 echo.
 
