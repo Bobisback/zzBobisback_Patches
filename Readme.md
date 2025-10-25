@@ -18,4 +18,6 @@ Patch Notes on zzBobisback_Patches:
 * Lowered Parallax tessellation and range to reduce scene-switch crashes
 * turned off FasterEditorPartList in KSPCommunityFixes due to getting crashes when loading parts list, and AI suggested I turn it off since VAB Organizer has the same fix. This did not help.
 * Added MM patch that balances ModuleReactionWheel, and engines for tweakscale. 
-* Added script for zipping up everything needed for a crash report. Just change the paths for each item in the top of the script and place in your crash directory. Run when you get a crash. 
+* Added script for zipping up everything needed for a crash report. Just change the paths for each item in the top of the script and place in your crash directory. Run when you get a crash. This is mostly to make talking to AI's easier.
+* Added script that will zip up the current MM cache. This is mostly to make talking to AI's easier.
+* Added script that will zip up the current MM cache, ksp.log, and MM log. This is mostly to make talking to AI's easier.

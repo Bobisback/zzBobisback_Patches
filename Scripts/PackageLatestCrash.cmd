@@ -1,41 +1,60 @@
 @echo off
-setlocal enabledelayedexpansion
+setlocal EnableExtensions EnableDelayedExpansion
 
 REM ============================================================
-REM ===============  EASY-TO-EDIT SETTINGS  ====================
-REM Edit these paths as needed:
+REM ==================  EASY-TO-EDIT SETTINGS  =================
+REM Location of KSP crash folders (script works no matter where it lives)
+set "kspCrashFolder=C:\Users\Bobisback\AppData\Local\Temp\Squad\Kerbal Space Program\Crashes"
+
+REM Files to collect
 set "moduleManagerLogUrl=F:\SteamLibrary\steamapps\common\Kerbal Space Program\Logs\ModuleManager\ModuleManager.log"
 set "moduleManagerCache=F:\SteamLibrary\steamapps\common\Kerbal Space Program\GameData\ModuleManager.ConfigCache"
 set "KSPLog=F:\SteamLibrary\steamapps\common\Kerbal Space Program\KSP.log"
-set "downloads=C:\Users\Bobisback\Downloads"
-REM Move files into the crash folder? Set to MOVE or COPY
+
+REM Where to drop the final zip
+REM set "downloads=C:\Users\Bobisback\Downloads"
+REM (Optional) user-agnostic:
+set "downloads=%USERPROFILE%\Downloads"
+
+REM COPY vs MOVE the three files into the crash folder
 set "FILE_ACTION=COPY"
+REM Set to MOVE if you want the originals removed.
 REM ============================================================
 
-REM Base directory = the folder where this script lives
-set "baseDir=%~dp0"
-
-REM Find the most recently created subfolder in baseDir → currentCrash
-for /f "usebackq delims=" %%F in (`
-  powershell -NoProfile -Command ^
-    "Get-ChildItem -LiteralPath '%~dp0' -Directory | Sort-Object CreationTime -Descending | Select-Object -First 1 -ExpandProperty FullName"
-`) do set "currentCrash=%%F"
-
-if not defined currentCrash (
-  echo [ERROR] No subfolders found in "%baseDir%".
-  echo Place this script one level above your crash folders and try again.
-  pause
-  exit /b 1
+REM Validate crash root exists
+if not exist "%kspCrashFolder%\" (
+  echo [ERROR] Crash folder root not found: "%kspCrashFolder%"
+  echo        Check the path above and try again.
+  goto :end
 )
 
-echo [INFO] Current crash folder detected:
+REM Find the most recently CREATED crash subfolder -> currentCrash
+REM /ad = directories only, /b = bare names, /o-d = newest first, /t:c = sort by creation time
+set "currentCrash="
+for /f "usebackq delims=" %%d in (`dir "%kspCrashFolder%" /ad /b /o-d /t:c`) do (
+  set "currentCrash=%kspCrashFolder%\%%d"
+  goto :gotCrash
+)
+:gotCrash
+
+if not defined currentCrash (
+  echo [ERROR] No crash subfolders found under:
+  echo        "%kspCrashFolder%"
+  goto :end
+)
+
+echo [INFO] Current crash folder:
 echo        "%currentCrash%"
 echo.
 
-REM Make sure the folder exists (it should)
-if not exist "%currentCrash%" mkdir "%currentCrash%"
+REM Ensure target exists (should already)
+if not exist "%currentCrash%\" (
+  echo [ERROR] Resolved crash folder doesn't exist:
+  echo        "%currentCrash%"
+  goto :end
+)
 
-REM Move/Copy the three files into currentCrash (warn if any are missing)
+REM COPY or MOVE the three files into the crash folder
 for %%X in ("%moduleManagerLogUrl%" "%moduleManagerCache%" "%KSPLog%") do (
   if exist "%%~X" (
     if /I "%FILE_ACTION%"=="COPY" (
@@ -50,27 +69,35 @@ for %%X in ("%moduleManagerLogUrl%" "%moduleManagerCache%" "%KSPLog%") do (
   )
 )
 
-
 echo.
 
-REM Build zip name from the crash folder's name (not full path)
+REM Build zip name from the crash folder name and create the zip in %TEMP%
 for %%A in ("%currentCrash%") do set "zipName=%%~nA.zip"
-
-REM Create zip in %TEMP% using PowerShell's Compress-Archive
 set "zipPath=%TEMP%\%zipName%"
+
+REM Clean any prior temp zip
+if exist "%zipPath%" del /f /q "%zipPath%" >nul 2>&1
+
+REM Zip the WHOLE crash folder (folder itself inside the zip)
 powershell -NoProfile -Command ^
-  "$p = '%currentCrash%'; $d = '%zipPath%'; if (Test-Path $d) {Remove-Item $d -Force}; Compress-Archive -Path (Join-Path $p '*') -DestinationPath $d -Force"
+  "$p = '%currentCrash%'; $d = '%zipPath%'; if (Test-Path $d) {Remove-Item $d -Force}; Get-ChildItem -LiteralPath $p | Compress-Archive -DestinationPath $d -Force"
 
 if not exist "%zipPath%" (
   echo [ERROR] Failed to create zip: "%zipPath%"
-  pause
-  exit /b 1
+  goto :end
 )
 
-REM Ensure Downloads exists, then move the zip there
-if not exist "%downloads%" mkdir "%downloads%"
+REM Ensure Downloads exists, then move the zip there (overwrite if exists)
+if not exist "%downloads%" mkdir "%downloads%" >nul 2>&1
 move /Y "%zipPath%" "%downloads%\%zipName%" >nul
 
-echo [DONE] Packaged: "%downloads%\%zipName%"
+if exist "%downloads%\%zipName%" (
+  echo [DONE] Packaged crash to:
+  echo        "%downloads%\%zipName%"
+) else (
+  echo [ERROR] Could not move the zip to "%downloads%".
+)
+
+:end
 echo.
 pause
