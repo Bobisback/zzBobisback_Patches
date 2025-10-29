@@ -23,3 +23,4 @@ Patch Notes on zzBobisback_Patches:
 * Added script that will zip up the current MM cache. This is mostly to make talking to AI's easier.
 * Added script that will zip up the current MM cache, ksp.log, and MM log. This is mostly to make talking to AI's easier.
 * Added an MM patch that moves all contracts that need people to techs that allow crew. 
+* Added in a patch that reconfigures all the Remotetech commsat contracts to fit better with my antenna rebalance. 
