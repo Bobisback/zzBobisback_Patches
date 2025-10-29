@@ -1,0 +1,795 @@
+// Auto-generated antenna rebalance patches (v5)
+// Source: Antenna Rebalance Manual - Parts.csv
+
+@PART[nfex-antenna-phased-single-3]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = Communotron 8-S
+    @TechRequired = start
+    @entryCost = 1500
+    @cost = 300.00
+    %description = Communotron 8-S is the rugged, always‑on antenna for craft that don’t baby their hardware. It keeps talking through ascent jitters, atmospheric grumbles, and the occasional enthusiastic landing. You won’t phone Eeloo with it, but for regional ops and rovers it’s gloriously hands‑off—no deploy buttons, no drama, just a steady stream of beeps back to base.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 400000
+        %EnergyCost = 0.10
+        !MaxQ = DELETE
+        !DishAngle = DELETE
+        %IsRTActive = true
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.00125
+            %PacketResourceCost = 12
+        }
+    }
+}
+
+@PART[kerbalism-antenna]:NEEDS[KerbalismConfig,RemoteTech]:FINAL
+{
+    @title = Communotron 8
+    @TechRequired = start
+    @entryCost = 2500
+    @cost = 500.00
+    %description = Communotron 8 is the classic omni—lightweight, simple, and ready to chat the moment you bolt it on. Perfect for early missions and near‑Kerbin jaunts. It dislikes high‑speed air and unexpected aerobatics, but in space it’s a faithful companion. Think tin‑can telephone, upgraded with science and fewer tangles.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 5187384
+        %EnergyCost = 0.16
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.005
+            %PacketResourceCost = 16
+        }
+    }
+}
+
+@PART[nfex-antenna-relay-tiny-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = RA-00-2
+    @TechRequired = survivability
+    @entryCost = 4000
+    @cost = 800.00
+    %description = RA-00-2 is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 148188633
+        %EnergyCost = 0.65
+        %MaxQ = 6000
+        %DishAngle = 90.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.004
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[nfex-antenna-phased-single-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = Communotron 12-S
+    @TechRequired = basicScience
+    @entryCost = 3000
+    @cost = 600.00
+    %description = Communotron 12-S is the rugged, always‑on antenna for craft that don’t baby their hardware. It keeps talking through ascent jitters, atmospheric grumbles, and the occasional enthusiastic landing. You won’t phone Eeloo with it, but for regional ops and rovers it’s gloriously hands‑off—no deploy buttons, no drama, just a steady stream of beeps back to base.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 2000000
+        %EnergyCost = 0.14
+        !MaxQ = DELETE
+        !DishAngle = DELETE
+        %IsRTActive = true
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.0025
+            %PacketResourceCost = 12
+        }
+    }
+}
+
+@PART[nfex-antenna-static-mini-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = HG-5 High Gain Antenna
+    @TechRequired = basicScience
+    @entryCost = 5500
+    @cost = 1100.00
+    %description = HG-5 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 148188633
+        %EnergyCost = 0.54
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.008
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[USBasicMicroSatWedge]:NEEDS[UniversalStorage2,RemoteTech]:FINAL
+{
+    @title = Basic Sub-Satellite
+    @TechRequired = miniaturization
+    @entryCost = 8000
+    @cost = 1600.00
+    %description = Basic Sub-Satellite is a comms-in-a-box: eject, drift, communicate. It’s the pocket relay you toss into orbit when you need a quick hop between your probe and home. No, it won’t reach the edge of the system, but it will neatly stitch together your local network. Cute, cheap, and suspiciously toaster‑like—classic Kerbal engineering.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 5000000
+        %EnergyCost = 0.50
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.008
+            %PacketResourceCost = 18
+        }
+    }
+}
+
+@PART[nfex-antenna-rover-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = AX-4 Pointable Helical Antenna
+    @TechRequired = spaceExploration
+    @entryCost = 2250
+    @cost = 450.00
+    %description = AX-4 Pointable Helical Antenna is the antenna that asks, 'Which way is up?' and then points that way. Built for rovers and low‑flying contraptions, it keeps a steady link while shrugging off bumps, dust, and questionable landings. Range isn’t its party trick—survivability is. If your wheels stay on, odds are this aerial does too, happily chirping home while you ricochet across alien dunes in search of snacks and science.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 3000000
+        %EnergyCost = 0.10
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.015
+            %PacketResourceCost = 8
+        }
+    }
+}
+
+@PART[RelayAntenna5]:NEEDS[RemoteTech]:FINAL
+{
+    @title = RA-2 Relay Antenna
+    @TechRequired = electrics
+    @entryCost = 6000
+    @cost = 1200.00
+    %description = RA-2 Relay Antenna is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 245394205
+        %EnergyCost = 0.82
+        %MaxQ = 6000
+        %DishAngle = 90.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.008
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[nfex-antenna-phased-array-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = HG-10 High Gain Antenna
+    @TechRequired = spaceExploration
+    @entryCost = 8000
+    @cost = 1600.00
+    %description = HG-10 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 245394205
+        %EnergyCost = 0.65
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.015
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[longAntenna]:NEEDS[RemoteTech]:FINAL
+{
+    @title = Communotron 16
+    @TechRequired = precisionEngineering
+    @entryCost = 10000
+    @cost = 2000.00
+    %description = Communotron 16 is the classic omni—lightweight, simple, and ready to chat the moment you bolt it on. Perfect for early missions and near‑Kerbin jaunts. It dislikes high‑speed air and unexpected aerobatics, but in space it’s a faithful companion. Think tin‑can telephone, upgraded with science and fewer tangles.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 10000000
+        %EnergyCost = 0.21
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.01
+            %PacketResourceCost = 16
+        }
+    }
+}
+
+@PART[nfex-antenna-phased-single-2]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = Communotron 16-S
+    @TechRequired = advElectrics
+    @entryCost = 6000
+    @cost = 1200.00
+    %description = Communotron 16-S is the rugged, always‑on antenna for craft that don’t baby their hardware. It keeps talking through ascent jitters, atmospheric grumbles, and the occasional enthusiastic landing. You won’t phone Eeloo with it, but for regional ops and rovers it’s gloriously hands‑off—no deploy buttons, no drama, just a steady stream of beeps back to base.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 8000000
+        %EnergyCost = 0.16
+        !MaxQ = DELETE
+        !DishAngle = DELETE
+        %IsRTActive = true
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.005
+            %PacketResourceCost = 12
+        }
+    }
+}
+
+@PART[RelayAntenna50]:NEEDS[RemoteTech]:FINAL
+{
+    @title = RA-15 Relay Antenna
+    @TechRequired = advElectrics
+    @entryCost = 12000
+    @cost = 2400.00
+    %description = RA-15 Relay Antenna is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 106468569001
+        %EnergyCost = 1.00
+        %MaxQ = 6000
+        %DishAngle = 60.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.015
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[nfex-antenna-deploy-wv3-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = HG-20 High Gain Antenna
+    @TechRequired = advExploration
+    @entryCost = 18000
+    @cost = 3600.00
+    %description = HG-20 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 106468569001
+        %EnergyCost = 0.82
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.03
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[nfex-antenna-rover-2]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = AX-5 Aerial Micro-Antenna
+    @TechRequired = fieldScience
+    @entryCost = 8000
+    @cost = 1600.00
+    %description = AX-5 Aerial Micro-Antenna is the antenna that asks, 'Which way is up?' and then points that way. Built for rovers and low‑flying contraptions, it keeps a steady link while shrugging off bumps, dust, and questionable landings. Range isn’t its party trick—survivability is. If your wheels stay on, odds are this aerial does too, happily chirping home while you ricochet across alien dunes in search of snacks and science.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 6000000
+        %EnergyCost = 0.16
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.025
+            %PacketResourceCost = 8
+        }
+    }
+}
+
+@PART[RelayAntenna100]:NEEDS[RemoteTech]:FINAL
+{
+    @title = RA-100 Relay Antenna
+    @TechRequired = specializedElectrics
+    @entryCost = 25000
+    @cost = 5000.00
+    %description = RA-100 Relay Antenna is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 225232564948
+        %EnergyCost = 1.28
+        %MaxQ = 6000
+        %DishAngle = 40.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.03
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[nfex-antenna-top-dish-1]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = HG-40 High Gain Antenna
+    @TechRequired = scienceTech
+    @entryCost = 35000
+    @cost = 7000.00
+    %description = HG-40 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 225232564948
+        %EnergyCost = 1.00
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.065
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[RTLongAntenna2]:NEEDS[RemoteTech]:FINAL
+{
+    @title = Communotron 32
+    @TechRequired = advUnmanned
+    @entryCost = 20000
+    @cost = 4000.00
+    %description = Communotron 32 is the classic omni—lightweight, simple, and ready to chat the moment you bolt it on. Perfect for early missions and near‑Kerbin jaunts. It dislikes high‑speed air and unexpected aerobatics, but in space it’s a faithful companion. Think tin‑can telephone, upgraded with science and fewer tangles.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 20000000
+        %EnergyCost = 0.25
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.02
+            %PacketResourceCost = 16
+        }
+    }
+}
+
+@PART[SurfAntenna]:NEEDS[RemoteTech]:FINAL
+{
+    @title = Communotron 32-S
+    @TechRequired = largeElectrics
+    @entryCost = 12000
+    @cost = 2400.00
+    %description = Communotron 32-S is the rugged, always‑on antenna for craft that don’t baby their hardware. It keeps talking through ascent jitters, atmospheric grumbles, and the occasional enthusiastic landing. You won’t phone Eeloo with it, but for regional ops and rovers it’s gloriously hands‑off—no deploy buttons, no drama, just a steady stream of beeps back to base.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 20000000
+        %EnergyCost = 0.21
+        !MaxQ = DELETE
+        !DishAngle = DELETE
+        %IsRTActive = true
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.01
+            %PacketResourceCost = 12
+        }
+    }
+}
+
+@PART[nfex-antenna-rover-3]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = AX-30 High Gain Micro-Antenna
+    @TechRequired = advancedMotors
+    @entryCost = 16000
+    @cost = 3200.00
+    %description = AX-30 High Gain Micro-Antenna is the antenna that asks, 'Which way is up?' and then points that way. Built for rovers and low‑flying contraptions, it keeps a steady link while shrugging off bumps, dust, and questionable landings. Range isn’t its party trick—survivability is. If your wheels stay on, odds are this aerial does too, happily chirping home while you ricochet across alien dunes in search of snacks and science.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 12000000
+        %EnergyCost = 0.21
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.05
+            %PacketResourceCost = 8
+        }
+    }
+}
+
+@PART[RTGigaDish2]:NEEDS[RemoteTech]:FINAL
+{
+    @title = RA-200
+    @TechRequired = largeElectrics
+    @entryCost = 50000
+    @cost = 10000.00
+    %description = RA-200 is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 385048801225
+        %EnergyCost = 1.60
+        %MaxQ = 6000
+        %DishAngle = 20.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.065
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[nfex-antenna-top-dish-2]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = HG-50 High Gain Antenna
+    @TechRequired = advScienceTech
+    @entryCost = 73000
+    @cost = 14600.00
+    %description = HG-50 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 385048801225
+        %EnergyCost = 1.28
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.125
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[restock-antenna-stack-2]:NEEDS[ReStockPlus,RemoteTech]:FINAL
+{
+    @title = Communotron 64
+    @TechRequired = largeUnmanned
+    @entryCost = 40000
+    @cost = 8000.00
+    %description = Communotron 64 is the classic omni—lightweight, simple, and ready to chat the moment you bolt it on. Perfect for early missions and near‑Kerbin jaunts. It dislikes high‑speed air and unexpected aerobatics, but in space it’s a faithful companion. Think tin‑can telephone, upgraded with science and fewer tangles.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 45389606
+        %EnergyCost = 0.32
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.04
+            %PacketResourceCost = 16
+        }
+    }
+}
+
+@PART[USAdvancedMicroSatWedge]:NEEDS[UniversalStorage2,RemoteTech]:FINAL
+{
+    @title = Advanced Sub-Satellite
+    @TechRequired = largeUnmanned
+    @entryCost = 80000
+    @cost = 16000.00
+    %description = Advanced Sub-Satellite is a comms-in-a-box: eject, drift, communicate. It’s the pocket relay you toss into orbit when you need a quick hop between your probe and home. No, it won’t reach the edge of the system, but it will neatly stitch together your local network. Cute, cheap, and suspiciously toaster‑like—classic Kerbal engineering.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0DishRange = DELETE
+        !Mode1DishRange = DELETE
+        %Mode0OmniRange = 0
+        %Mode1OmniRange = 45389606
+        %EnergyCost = 1.50
+        %MaxQ = 6000
+        !DishAngle = DELETE
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.04
+            %PacketResourceCost = 18
+        }
+    }
+}
+
+@PART[nfex-antenna-relay-tdrs-2]:NEEDS[NearFutureExploration,RemoteTech]:FINAL
+{
+    @title = RA-5B Advanced Relay Antenna
+    @TechRequired = experimentalElectrics
+    @entryCost = 70000
+    @cost = 14000.00
+    %description = RA-5B Advanced Relay Antenna is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 662419627391
+        %EnergyCost = 2.00
+        %MaxQ = 6000
+        %DishAngle = 10.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.125
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[mediumDishAntenna]:NEEDS[RemoteTech]:FINAL
+{
+    @title = HG-55 High Gain Antenna
+    @TechRequired = experimentalScience
+    @entryCost = 105000
+    @cost = 21000.00
+    %description = HG-55 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 662419627391
+        %EnergyCost = 1.60
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.25
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[RTGigaDish1]:NEEDS[RemoteTech]:FINAL
+{
+    @title = RA-10C Advanced Relay Antenna
+    @TechRequired = highTechElectricalSystems
+    @entryCost = 100000
+    @cost = 20000.00
+    %description = RA-10C Advanced Relay Antenna is a proper relay dish for serious networking. Aim it vaguely Kerbin‑ward and it will haul your signal across planetary neighborhoods without demanding a diploma in pointing. It’s not shy about power or price, but that’s the tax for talking to far‑flung probes. Launch under a fairing, add a few batteries, and enjoy the sound of distant robots saying 'loud and clear.'
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 1024430443011
+        %EnergyCost = 2.50
+        %MaxQ = 6000
+        %DishAngle = 5.0
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.25
+            %PacketResourceCost = 20
+        }
+    }
+}
+
+@PART[restock-antenna-stack-3]:NEEDS[ReStockPlus,RemoteTech]:FINAL
+{
+    @title = HG-61 High Gain Antenna
+    @TechRequired = scientificOutposts
+    @entryCost = 150000
+    @cost = 30000.00
+    %description = HG-61 High Gain Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 1024430443011
+        %EnergyCost = 2.00
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.5
+            %PacketResourceCost = 15
+        }
+    }
+}
+
+@PART[jw1MDA]:NEEDS[JX2Antenna,RemoteTech]:FINAL
+{
+    @title = JW1 Medium Deployable Antenna
+    @TechRequired = artificialIntelligence
+    @entryCost = 200000
+    @cost = 40000.00
+    %description = JW1 Medium Deployable Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 1024430443011
+        %EnergyCost = 3.00
+        %MaxQ = 6000
+        %DishAngle = 0.01
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.6
+            %PacketResourceCost = 24
+        }
+    }
+}
+
+@PART[ju1MDA]:NEEDS[JX2Antenna,RemoteTech]:FINAL
+{
+    @title = JU1 Medium Deployable Antenna
+    @TechRequired = highPowerElectricalSystems
+    @entryCost = 250000
+    @cost = 50000.00
+    %description = JU1 Medium Deployable Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 3808635637939
+        %EnergyCost = 4.00
+        %MaxQ = 6000
+        %DishAngle = 0.02
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 0.8
+            %PacketResourceCost = 28
+        }
+    }
+}
+
+@PART[jx2LDA]:NEEDS[JX2Antenna,RemoteTech]:FINAL
+{
+    @title = JX2 Large Deployable Antenna
+    @TechRequired = experimentalElectricalSystems
+    @entryCost = 300000
+    @cost = 60000.00
+    %description = JX2 Large Deployable Antenna is a high‑gain precision talker—narrow beam, big bite. When it’s on target, data screams home at impressive rates; when it’s not, well… you just scanned the void very, very accurately. Treat it like a surgical instrument: stable platform, careful aiming, and plenty of juice. Do that, and it’ll whisper across absurd distances as if Kerbin were right next door.
+    @MODULE[ModuleRTAntenna]
+    {
+        !Mode0OmniRange = DELETE
+        !Mode1OmniRange = DELETE
+        %Mode0DishRange = 0
+        %Mode1DishRange = 3808635637939
+        %EnergyCost = 5.00
+        %MaxQ = 6000
+        %DishAngle = 0.03
+        !IsRTActive = DELETE
+        %TRANSMITTER
+        {
+            %PacketInterval = 1
+            %PacketSize = 1.4
+            %PacketResourceCost = 32
+        }
+    }
+}
+
+// ============================================================================
+// Remove TweakScale from antenna parts touched by ZZZ_AntennaRebalance_Applied
+// Runs only if TweakScale is installed AND these are present:
+//   Squad (stock), RemoteTech, NearFutureExploration, ReStockPlus,
+//   UniversalStorage2, Kerbalism, JX2Antenna
+// Order: FINAL to catch dynamically-added modules
+// Indentation: 4 spaces
+// ============================================================================
+@PART[RTGigaDish1|RTGigaDish2|RTLongAntenna2|RelayAntenna100|RelayAntenna50|RelayAntenna5|SurfAntenna|longAntenna|mediumDishAntenna|restock-antenna-stack-2|restock-antenna-stack-3|nfex-antenna-phased-array-1|nfex-antenna-phased-single-1|nfex-antenna-phased-single-2|nfex-antenna-phased-single-3|nfex-antenna-relay-tdrs-2|nfex-antenna-relay-tiny-1|nfex-antenna-rover-1|nfex-antenna-rover-2|nfex-antenna-rover-3|nfex-antenna-static-mini-1|nfex-antenna-top-dish-1|nfex-antenna-top-dish-2|USAdvancedMicroSatWedge|USBasicMicroSatWedge|kerbalism-antenna|ju1MDA|jw1MDA|jx2LDA]:NEEDS[TweakScale,RemoteTech,NearFutureExploration,ReStockPlus,UniversalStorage2,Kerbalism,JX2Antenna]:FINAL
+{
+        !MODULE[TweakScale] {}
+}
