@@ -22,3 +22,4 @@ Patch Notes on zzBobisback_Patches:
 * Added script for zipping up everything needed for a crash report. Just change the paths for the root ksp directory and run when you get a crash. This is mostly to make talking to AI's easier.
 * Added script that will zip up the current MM cache. This is mostly to make talking to AI's easier.
 * Added script that will zip up the current MM cache, ksp.log, and MM log. This is mostly to make talking to AI's easier.
+* Added an MM patch that moves all contracts that need people to techs that allow crew. 
